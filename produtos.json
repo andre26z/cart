@@ -1,0 +1,15 @@
+[
+    {
+      "id": 1,
+      "item": "Camisa do Flamengo",
+      "description": "Camisa oficial Clube de Regatas do Flamengo.",
+      "value": 250
+    },
+    {
+      "id": 2,
+      "item": "Jaqueta Calvin Klein",
+      "description": "Jaqueta preta Calvin Klein original tecido grosso.",
+      "value": 500
+    }
+  ]
+  
