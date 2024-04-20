@@ -1,8 +1,14 @@
 <template>
   <div class="max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden">
     <div class="p-4 bg-white rounded-lg shadow-md mt-4">
-      <h3 class="font-semibold text-gray-800">Total:</h3>
+      <h3 class="font-semibold text-gray-800">Produtos:</h3>
       <p class="text-xl font-bold text-gray-900">R${{ total.toFixed(2) }}</p>
+    </div>
+    <div v-if="total > 0" class="p-4 bg-white rounded-lg shadow-md">
+      <h3 class="font-semibold text-gray-800">Total com frete:</h3>
+      <p class="text-xl font-bold text-gray-900">
+        R${{ (total + 100).toFixed(2) }}
+      </p>
     </div>
     <div>
       <ProductCard
