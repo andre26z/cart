@@ -40,6 +40,11 @@
           Já fiz o pagamento
         </button>
       </div>
+      <div
+        class="text-center justify-center mt-5 text-center w-1/4 mx-auto text-white bg-button rounded-xl px-4 py-2 mt-7"
+      >
+        <button @click="returnToPayment" class="return-button">Voltar</button>
+      </div>
     </div>
   </div>
 </template>
@@ -47,27 +52,30 @@
 <script setup>
 import { ref } from "vue";
 
-const boletoCode = "8949461894984 6515648916 6548964631668";
+
+const emits = defineEmits(["return-to-payment"]); // Use the correct event name here
 const paymentConfirmed = ref(false);
+const boletoCode = "8949461894984 6515648916 6548964631668";
+
+const returnToPayment = () => {
+  // Emit the correct event name
+  emits("return-to-payment");
+};
 
 const copyCode = () => {
   navigator.clipboard
     .writeText(boletoCode)
     .then(() => {
-      // Possibly show a success message to the user
+      alert("Código copiado para a área de transferência.");
     })
     .catch((err) => {
-      // Possibly show an error message to the user
-      console.error("Failed to copy: ", err);
+      alert("Erro ao copiar o código: " + err);
     });
 };
 
 const confirmPayment = () => {
   paymentConfirmed.value = true;
-  // Here you can implement additional logic like notifying the backend, etc.
 };
 </script>
 
-<style scoped>
-/* Add any additional Tailwind styles as needed */
-</style>
+<style scoped></style>
