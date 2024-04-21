@@ -25,7 +25,7 @@
       <div
         class="boleto-code bg-gray-100 p-3 font-bold rounded text-lg font-mono mb-4 text-center mt-3"
       >
-        8949461894984 6515648916 6548964631668
+        {{ boletoCode }}
       </div>
       <div class="p-3 rounded text-lg text-center font-mono">
         <button
@@ -50,10 +50,15 @@
 </template>
 
 <script setup>
-const emits = defineEmits(["return-to-payment"]);
+import { ref } from "vue";
+
+// Include 'payment-successful' in the emits declaration
+const emits = defineEmits(["return-to-payment", "payment-successful"]);
+
 const paymentConfirmed = ref(false);
 const boletoCode = "8949461894984 6515648916 6548964631668";
 const paymentSuccess = ref(false);
+
 const returnToPayment = () => {
   emits("return-to-payment");
 };
@@ -62,16 +67,16 @@ const copyCode = () => {
   navigator.clipboard
     .writeText(boletoCode)
     .then(() => {
-      alert("Código copiado para a área de transferência.");
+      alert("Código copiado para a área de transferência.");
     })
     .catch((err) => {
-      alert("Erro ao copiar o código: " + err);
+      alert("Erro ao copiar o código: " + err);
     });
 };
 
 const confirmPayment = () => {
   paymentConfirmed.value = true;
   paymentSuccess.value = true;
-  emits("payment-successful");
+  emits("payment-successful"); 
 };
 </script>

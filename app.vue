@@ -60,7 +60,6 @@
         />
         <Pix
           v-else-if="paymentMethodSelected === 'PIX'"
-          @close-pix="handleClosePix"
           @return-to-marketplace="handleReturnToMarketplace"
         />
         <CreditCardPayment
