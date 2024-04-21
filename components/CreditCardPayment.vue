@@ -66,12 +66,10 @@
           <span v-if="errors.cvv" class="text-red-500">{{ errors.cvv }}</span>
         </div>
       </div>
-      <div
-        class="bg-button rounded-xl px-4 py-2 flex items-center justify-center cursor-pointer w-full mx-auto mt-4"
-      >
+      <div>
         <button
           type="submit"
-          class="return-button bg-button text-white font-bold"
+          class="bg-button rounded-xl px-4 py-2 flex items-center justify-center text-white font-bold cursor-pointer w-full mx-auto mt-4"
         >
           Realizar pagamento
         </button>
@@ -84,6 +82,7 @@
       <h1>Pagamento aprovado</h1>
     </div>
     <div
+      @click="returnToPayment"
       class="text-center justify-center mt-5 cursor-pointer text-center w-1/4 mx-auto text-white bg-button rounded-xl px-4 py-2 mt-3"
     >
       <button @click="returnToPayment" class="return-button">Voltar</button>
@@ -93,9 +92,12 @@
 
 <script setup>
 import { reactive, ref } from "vue";
-import { inputRules } from "@/utils/input-rules"; 
+import { inputRules } from "@/utils/input-rules";
 
-const emits = defineEmits(["return-to-payment-method-selection", "payment-successful"]);
+const emits = defineEmits([
+  "return-to-payment-method-selection",
+  "payment-successful",
+]);
 const paymentSuccess = ref(false);
 const creditCard = reactive({
   fullName: "",
