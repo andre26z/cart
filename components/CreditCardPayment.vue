@@ -44,10 +44,15 @@
         </button>
       </div>
     </form>
-    <div v-if="paymentSuccess" class="text-lg font-bold text-green-700 text-center mt-4">
+    <div
+      v-if="paymentSuccess"
+      class="text-lg font-bold text-green-700 text-center"
+    >
       <h1>Pagamento aprovado</h1>
     </div>
-    <div class="text-center justify-center mt-5 text-center w-1/4 mx-auto text-white bg-button rounded-xl px-4 py-2 mt-7"> 
+    <div
+      class="text-center justify-center mt-5 text-center w-1/4 mx-auto text-white bg-button rounded-xl px-4 py-2 mt-3"
+    >
       <button @click="returnToPayment" class="return-button">Voltar</button>
     </div>
   </div>
@@ -67,9 +72,10 @@ const creditCard = reactive({
 
 const submitCreditCardForm = () => {
   console.log("Submitting credit card form:", creditCard);
-
   paymentSuccess.value = true;
+  emits("payment-successful"); 
 };
+
 const returnToPayment = () => {
   emits("return-to-payment-method-selection");
 };

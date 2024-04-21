@@ -45,7 +45,9 @@
         >
           2
         </div>
-        <div class="rounded-full px-2 py-1 ml-1 mt-3 bg-gray-400 text-white">
+        <div
+          :class="['rounded-full px-2 py-1 ml-1 mt-3 text-white', buttonStyle]"
+        >
           3
         </div>
       </div>
@@ -63,10 +65,12 @@
         />
         <CreditCardPayment
           v-if="paymentMethodSelected === 'Cartao de Credito'"
+          @payment-successful="handlePaymentSuccess"
           @return-to-payment-method-selection="
             handleReturnToPaymentMethodSelection
           "
         />
+
         <Boleto
           v-else-if="paymentMethodSelected === 'Boleto'"
           @return-to-payment="handleReturnToPaymentMethodSelection"
@@ -101,8 +105,16 @@ const handleProceedWithMethod = (method) => {
 const handleReturnToMarketplace = () => {
   paymentMethodSelected.value = null;
 };
+
+const buttonStyle = ref("bg-gray-400"); // Default style
+
+const handlePaymentSuccess = () => {
+  buttonStyle.value = "bg-button"; // Change style on payment success
+};
+
 const handleReturnToPaymentMethodSelection = () => {
   paymentMethodSelected.value = null;
+  buttonStyle.value = "bg-gray-400";
 };
 </script>
 
