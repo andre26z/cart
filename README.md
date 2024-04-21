@@ -1,10 +1,8 @@
-# Nuxt 3 Minimal Starter
+PROJETO EM PRODUÇÃO:
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+https://payment-system-two.vercel.app/
 
-## Setup
-
-Make sure to install the dependencies:
+## INSTALAÇÃO DO PROJETO
 
 ```bash
 # npm
@@ -22,7 +20,7 @@ bun install
 
 ## Development Server
 
-Start the development server on `http://localhost:3000`:
+Start do server de desenvolvimento dev `http://localhost:3000`:
 
 ```bash
 # npm
@@ -37,39 +35,12 @@ yarn dev
 # bun
 bun run dev
 ```
+###  DESCRIÇÃO DO APLICATIVO
 
-## Production
+Esse aplicativo se trata de um carrinho de compras com exemplos mock e a inclusão de três sistemas de pagamento
+- Cada sistema de pagamento possui seus próprios funcionamentos e regras.
+- Podemos adicionar e retirar itens do carrinho apenas enquanto estamos no passo 1, após o passo 1 a lista de produtos fica desabilitada impossibilitando a adição de novos itens
+- Inputs de cartão de crédito possuem regras reais e o formulário só pode ser submetido com a compreensão de todas essas regras
+- QR CODE e a função de copiar código do boleto funcionam de forma real porém com exemplos mock
 
-Build the application for production:
 
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

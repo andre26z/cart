@@ -64,12 +64,30 @@ const emitProceed = () => {
   text-align: left;
   transition: background-color 0.3s, color 0.3s;
   font-weight: bold;
+  
   font-size: large;
+  position: relative;
+}
+.payment-button::after {
+  content: '';
+  display: block;
+  width: 20px; 
+  height: 20px; 
+  border: 2px solid #ed7a7a; 
+  background-color: white;
+  border-radius: 50%; 
+  position: absolute;
+  right: 10px; 
+  top: 50%;
+  transform: translateY(-50%); 
 }
 
+.payment-button.selected::after {
+  opacity: 1; 
+}
 .payment-button.selected {
-  background-color: #ed7a7a; 
-  color: white; 
+  background-color: #ed7a7a;
+  color: white;
 }
 
 .proceed-button {
