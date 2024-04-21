@@ -52,7 +52,6 @@
 <script setup>
 import { ref } from "vue";
 
-// Include 'payment-successful' in the emits declaration
 const emits = defineEmits(["return-to-payment", "payment-successful"]);
 
 const paymentConfirmed = ref(false);
@@ -77,6 +76,6 @@ const copyCode = () => {
 const confirmPayment = () => {
   paymentConfirmed.value = true;
   paymentSuccess.value = true;
-  emits("payment-successful"); 
+  emits("payment-successful");
 };
 </script>

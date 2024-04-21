@@ -41,9 +41,8 @@ const emit = defineEmits(["update-total"]);
 
 const isSelected = ref(false);
 
-// New method to handle click considering the disabled state
 const handleClick = () => {
-  if (!props.disabled) {  // Check if not disabled before toggling
+  if (!props.disabled) {  
     toggleSelection();
   }
 };

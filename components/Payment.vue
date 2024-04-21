@@ -68,8 +68,8 @@ const emitProceed = () => {
 }
 
 .payment-button.selected {
-  background-color: #ed7a7a; /* Background color when selected */
-  color: white; /* Text color when selected */
+  background-color: #ed7a7a; 
+  color: white; 
 }
 
 .proceed-button {

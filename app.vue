@@ -27,11 +27,11 @@
     </div>
 
     <div class="grid-wrapper ml-7 mr-7">
-      <div class="grid grid-cols-1 divide-y vertical-divider px-3">
-        <div class="bg-button rounded-full text-white px-2 py-1 ml-1">1</div>
+      <div class="grid grid-cols-1 divide-y vertical-divider px-4">
+        <div class="bg-button rounded-full text-white px-2 py-0.5 ml-1">1</div>
         <div
           :class="{
-            'rounded-full px-2 py-1 ml-1 mt-3 text-white': true,
+            'rounded-full px-2 py-0.5 ml-1 mt-3  text-white': true,
             'bg-button':
               paymentMethodSelected === 'PIX' ||
               paymentMethodSelected === 'Cartao de Credito' ||
@@ -46,14 +46,14 @@
           2
         </div>
         <div
-          :class="['rounded-full px-2 py-1 ml-1 mt-3 text-white', buttonStyle]"
+          :class="['rounded-full px-2 py-0.5 ml-1 mt-3 text-white', buttonStyle]"
         >
           3
         </div>
       </div>
     </div>
-    <div class="payment-section">
-      <div class="max-w-xl mx-auto bg-white overflow-hidden">
+    <div class="payment-section ">
+      <div class="max-w-xl mx-auto bg-white overflow-hidden ml-2">
         <Payment
           v-if="!paymentMethodSelected"
           @proceed-with-method="handleProceedWithMethod"
@@ -110,10 +110,10 @@ const handleReturnToMarketplace = () => {
   paymentMethodSelected.value = null;
 };
 
-const buttonStyle = ref("bg-gray-400"); // Default style
+const buttonStyle = ref("bg-gray-400"); 
 
 const handlePaymentSuccess = () => {
-  buttonStyle.value = "bg-button"; // Change style on payment success
+  buttonStyle.value = "bg-button"; 
 };
 
 const handleReturnToPaymentMethodSelection = () => {

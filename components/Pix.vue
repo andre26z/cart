@@ -31,7 +31,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 
-// Include 'return-to-marketplace' in the emits declaration
 const emits = defineEmits(["close-pix", "return-to-marketplace"]);
 
 const timer = ref(600);
