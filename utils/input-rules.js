@@ -15,8 +15,27 @@ export const inputRules = {
     message: "CPF deve conter exatamente 11 dígitos.",
   },
   expirationDate: {
-    validate: (value) => /^(0[1-9]|1[0-2])\/[0-9]{2}$/.test(value),
-    message: "Validade deve estar no formato MM/AA.",
+    validate: (value) => {
+      const regex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
+      if (!regex.test(value)) {
+        return false;
+      }
+      const [month, year] = value.split("/");
+      const currentYear = new Date().getFullYear() % 100; // get last two digits
+      const currentMonth = new Date().getMonth() + 1;
+      const inputYear = parseInt(year, 10);
+      const inputMonth = parseInt(month, 10);
+
+      // Check if the year is current year but month is already past or year is less than current year
+      if (
+        inputYear < currentYear ||
+        (inputYear === currentYear && inputMonth < currentMonth)
+      ) {
+        return false;
+      }
+      return true;
+    },
+    message: "Validade deve estar no formato MM/AA e deve ser uma data futura.",
   },
   cvv: {
     validate: (value) => /^\d{3}$/.test(value),

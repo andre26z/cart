@@ -84,7 +84,7 @@
       <h1>Pagamento aprovado</h1>
     </div>
     <div
-      class="text-center justify-center mt-5 text-center w-1/4 mx-auto text-white bg-button rounded-xl px-4 py-2 mt-3"
+      class="text-center justify-center mt-5 cursor-pointer text-center w-1/4 mx-auto text-white bg-button rounded-xl px-4 py-2 mt-3"
     >
       <button @click="returnToPayment" class="return-button">Voltar</button>
     </div>
@@ -93,9 +93,9 @@
 
 <script setup>
 import { reactive, ref } from "vue";
-import { inputRules } from "@/utils/input-rules"; // adjust the import path as necessary
+import { inputRules } from "@/utils/input-rules"; 
 
-const emits = defineEmits(["return-to-payment-method-selection"]);
+const emits = defineEmits(["return-to-payment-method-selection", "payment-successful"]);
 const paymentSuccess = ref(false);
 const creditCard = reactive({
   fullName: "",
