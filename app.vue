@@ -22,7 +22,14 @@
         />
       </div>
     </div>
-    <Payment />
+    <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+      <!-- ... other components ... -->
+      <Payment
+        v-if="!paymentMethodSelected"
+        @proceed-with-method="handleProceedWithMethod"
+      />
+      <Pix v-if="paymentMethodSelected === 'PIX'" @close-pix="handleClosePix" @return-to-marketplace="handleReturnToMarketplace" />
+    </div>
   </div>
 </template>
 
@@ -30,9 +37,11 @@
 import { ref } from "vue";
 import ProductCard from "@/components/ProductCard.vue";
 import productData from "@/products.json";
-
+import Pix from "@/components/Pix.vue";
 const products = ref(productData);
 const total = ref(0);
+const showPix = ref(false);
+const paymentMethodSelected = ref(null);
 
 const handleUpdateTotal = ({ value, selected }) => {
   if (selected) {
@@ -40,6 +49,18 @@ const handleUpdateTotal = ({ value, selected }) => {
   } else {
     total.value -= value;
   }
+};
+const handlePaymentSelected = (method) => {
+  if (method === "PIX") {
+    showPix.value = true;
+  }
+};
+const handleProceedWithMethod = (method) => {
+  paymentMethodSelected.value = method;
+};
+
+const handleReturnToMarketplace = () => {
+  paymentMethodSelected.value = null; // This will hide Pix and show Payment if no method is selected
 };
 </script>
 

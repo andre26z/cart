@@ -24,22 +24,29 @@
         Boleto
       </button>
     </div>
-    <button class="proceed-button" @click="proceed">Prosseguir</button>
+  </div>
+  <div class="text-center">
+    <button class="proceed-button" @click="emitProceed">Prosseguir</button>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, defineEmits } from "vue";
 
 const selectedMethod = ref(null);
+const emits = defineEmits(["proceed-with-method"]);
 
 const selectMethod = (method) => {
   selectedMethod.value = method;
 };
 
-const proceed = () => {
-  // Implement the proceed functionality or emit an event
-  console.log(`Proceeding with ${selectedMethod.value}`);
+const emitProceed = () => {
+  if (selectedMethod.value) {
+    emits("proceed-with-method", selectedMethod.value);
+  } else {
+    // Handle the case where no method is selected
+    console.error("Please select a payment method before proceeding.");
+  }
 };
 </script>
 
