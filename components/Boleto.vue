@@ -41,7 +41,7 @@
         </button>
       </div>
       <div
-        class="text-center justify-center mt-5 text-center w-1/4 mx-auto text-white bg-button rounded-xl px-4 py-2 mt-7"
+        class="text-center justify-center mt-5 text-center w-1/4 mx-auto text-white bg-button cursor-pointer rounded-xl px-4 py-2 mt-7"
       >
         <button @click="returnToPayment" class="return-button">Voltar</button>
       </div>
@@ -50,12 +50,11 @@
 </template>
 
 <script setup>
-const emits = defineEmits(["return-to-payment"]); 
+const emits = defineEmits(["return-to-payment"]);
 const paymentConfirmed = ref(false);
 const boletoCode = "8949461894984 6515648916 6548964631668";
-
+const paymentSuccess = ref(false);
 const returnToPayment = () => {
-  // Emit the correct event name
   emits("return-to-payment");
 };
 
@@ -72,5 +71,7 @@ const copyCode = () => {
 
 const confirmPayment = () => {
   paymentConfirmed.value = true;
+  paymentSuccess.value = true;
+  emits("payment-successful");
 };
 </script>

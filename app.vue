@@ -74,6 +74,7 @@
         <Boleto
           v-else-if="paymentMethodSelected === 'Boleto'"
           @return-to-payment="handleReturnToPaymentMethodSelection"
+          @payment-successful="handlePaymentSuccess"
         />
       </div>
     </div>

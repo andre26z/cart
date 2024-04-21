@@ -6,17 +6,39 @@
     <form v-if="!paymentSuccess" @submit.prevent="submitCreditCardForm">
       <div class="input-group mb-3">
         <label for="fullName" class="font-bold">Nome completo</label>
-        <input type="text" v-model="creditCard.fullName" required />
+        <input
+          type="text"
+          v-model="creditCard.fullName"
+          @blur="validateInput('fullName')"
+          required
+        />
+        <span v-if="errors.fullName" class="text-red-500">{{
+          errors.fullName
+        }}</span>
       </div>
       <div class="input-group mb-3">
         <label for="cardNumber" class="font-bold">Número do cartão</label>
-        <input type="text" v-model="creditCard.cardNumber" required />
+        <input
+          type="text"
+          v-model="creditCard.cardNumber"
+          @blur="validateInput('cardNumber')"
+          required
+        />
+        <span v-if="errors.cardNumber" class="text-red-500">{{
+          errors.cardNumber
+        }}</span>
       </div>
       <div class="input-group mb-3">
         <label for="cpf" class="font-bold"
           >CPF do responsável pelo cartão</label
         >
-        <input type="text" v-model="creditCard.cpf" required />
+        <input
+          type="text"
+          v-model="creditCard.cpf"
+          @blur="validateInput('cpf')"
+          required
+        />
+        <span v-if="errors.cpf" class="text-red-500">{{ errors.cpf }}</span>
       </div>
       <div class="flex flex-wrap -mx-2">
         <div class="input-group mb-3 px-2 w-40">
@@ -25,12 +47,23 @@
             type="text"
             placeholder="MM/AA"
             v-model="creditCard.expirationDate"
+            @blur="validateInput('expirationDate')"
             required
           />
+          <span v-if="errors.expirationDate" class="text-red-500">{{
+            errors.expirationDate
+          }}</span>
         </div>
         <div class="input-group mb-3 px-2 w-24">
           <label for="cvv" class="font-bold">CVV</label>
-          <input type="text" placeholder="XXX" required />
+          <input
+            type="text"
+            placeholder="XXX"
+            v-model="creditCard.cvv"
+            @blur="validateInput('cvv')"
+            required
+          />
+          <span v-if="errors.cvv" class="text-red-500">{{ errors.cvv }}</span>
         </div>
       </div>
       <div
@@ -59,7 +92,9 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
+import { inputRules } from "@/utils/input-rules"; // adjust the import path as necessary
+
 const emits = defineEmits(["return-to-payment-method-selection"]);
 const paymentSuccess = ref(false);
 const creditCard = reactive({
@@ -69,11 +104,36 @@ const creditCard = reactive({
   expirationDate: "",
   cvv: "",
 });
+const errors = reactive({
+  fullName: null,
+  cardNumber: null,
+  cpf: null,
+  expirationDate: null,
+  cvv: null,
+});
+
+const validateInput = (field) => {
+  const rule = inputRules[field];
+  const value = creditCard[field];
+  if (!rule.validate(value)) {
+    errors[field] = rule.message;
+    return false;
+  } else {
+    errors[field] = null;
+    return true;
+  }
+};
 
 const submitCreditCardForm = () => {
+  const isValid = Object.keys(creditCard).every((field) =>
+    validateInput(field)
+  );
+  if (!isValid) {
+    return;
+  }
   console.log("Submitting credit card form:", creditCard);
   paymentSuccess.value = true;
-  emits("payment-successful"); 
+  emits("payment-successful");
 };
 
 const returnToPayment = () => {
@@ -104,6 +164,11 @@ const returnToPayment = () => {
 
 .input-group input:hover {
   border: 1px solid #202122;
+}
+
+.input-group span {
+  display: block;
+  margin-top: 0.25rem;
 }
 
 .submit-button {
