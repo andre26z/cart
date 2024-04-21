@@ -24,8 +24,26 @@
         </div>
       </div>
     </div>
+
+    <div class="grid-wrapper ml-7 mr-7">
+      <div class="grid grid-cols-1 divide-y vertical-divider px-3">
+        <div class="bg-button rounded-full text-white px-2 py-1 ml-1">1</div>
+        <div
+          class="rounded-full px-2 py-1 ml-1 mt-3"
+          :class="{
+            'bg-button rounded-full text-white px-2 py-1 ml-1 mt-3':
+              paymentMethodSelected === 'PIX' ||
+              paymentMethodSelected === 'Cartao de Credito' ||
+              paymentMethodSelected === 'Boleto',
+          }"
+        >
+          2
+        </div>
+        <div class="py-1 ml-1 px-2 mt-3">3</div>
+      </div>
+    </div>
     <div class="payment-section">
-      <div class="max-w-xl mx-auto bg-white rounded-lg overflow-hidden">
+      <div class="max-w-xl mx-auto bg-white overflow-hidden">
         <Payment
           v-if="!paymentMethodSelected"
           @proceed-with-method="handleProceedWithMethod"
@@ -67,9 +85,7 @@ const handleUpdateTotal = ({ value, selected }) => {
     total.value -= value;
   }
 };
-const handlePaymentSelected = (method) => {
-  paymentMethodSelected.value = method;
-};
+
 const handleProceedWithMethod = (method) => {
   paymentMethodSelected.value = method;
 };
@@ -80,7 +96,6 @@ const handleReturnToMarketplace = () => {
 const handleReturnToPaymentMethodSelection = () => {
   paymentMethodSelected.value = null;
 };
-
 </script>
 
 <style scoped>
@@ -92,8 +107,8 @@ const handleReturnToPaymentMethodSelection = () => {
 
 .products-section,
 .payment-section {
-  flex: 1; /* Faz cada seção ocupar metade do espaço disponível */
-  margin: 10px; /* Espaçamento entre as seções */
+  flex: 1;
+  margin: 10px;
 }
 
 .flex-container {
@@ -102,10 +117,12 @@ const handleReturnToPaymentMethodSelection = () => {
 }
 
 .product-list {
-  flex-basis: 100%; /* Use the full width of its parent */
-  max-height: 175px; /* Maximum height before scrolling */
-  overflow-y: auto; /* Enable vertical scrolling */
+  flex-basis: 100%;
+  max-height: 175px;
+  overflow-y: auto;
 }
 
-/* Mantenha qualquer estilo adicional necessário */
+.grid-wrapper .vertical-divider {
+  border-right: 2px solid #ccc;
+}
 </style>
