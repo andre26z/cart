@@ -1,11 +1,14 @@
 <template>
   <div
-    class="flex justify-between p-4 rounded-lg shadow-md mb-2 border-l-4 cursor-pointer "
+    class="flex justify-between p-4 rounded-lg shadow-md mb-2 border-l-4 cursor-pointer"
     :class="{
       'bg-white border-red-500': !isSelected,
       'bg-gray-300 border-gray-500': isSelected,
     }"
-    @click="toggleSelection"
+    @click="handleClick"
+    role="button"
+    :aria-pressed="isSelected.toString()"
+    :aria-disabled="disabled.toString()"  
   >
     <div>
       <h3 class="font-semibold text-gray-800">{{ item }}</h3>
@@ -16,21 +19,40 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue';
 
 const props = defineProps({
-  item: String,
-  description: String,
-  value: Number,
+  item: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  value: {
+    type: Number,
+    required: true,
+  },
+  disabled: Boolean,
 });
 
 const emit = defineEmits(["update-total"]);
 
 const isSelected = ref(false);
 
+// New method to handle click considering the disabled state
+const handleClick = () => {
+  if (!props.disabled) {  // Check if not disabled before toggling
+    toggleSelection();
+  }
+};
+
 const toggleSelection = () => {
   isSelected.value = !isSelected.value;
-
-  emit("update-total", { value: props.value, selected: isSelected.value });
+  emit("update-total", {
+    value: props.value,
+    selected: isSelected.value,
+  });
 };
 </script>

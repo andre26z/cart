@@ -50,10 +50,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-
-
-const emits = defineEmits(["return-to-payment"]); // Use the correct event name here
+const emits = defineEmits(["return-to-payment"]); 
 const paymentConfirmed = ref(false);
 const boletoCode = "8949461894984 6515648916 6548964631668";
 
@@ -77,5 +74,3 @@ const confirmPayment = () => {
   paymentConfirmed.value = true;
 };
 </script>
-
-<style scoped></style>

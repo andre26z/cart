@@ -19,6 +19,7 @@
             :item="product.item"
             :description="product.description"
             :value="product.value"
+            :disabled="paymentMethodSelected !== null"
             @update-total="handleUpdateTotal"
           />
         </div>

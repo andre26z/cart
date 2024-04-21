@@ -14,13 +14,14 @@
       />
     </figure>
     <div class="timer mb-2 text-lg text-green-600 mb-2">
-    Faltam {{ minutes }}:{{ seconds < 10 ? "0" + seconds : seconds }} para expirar!
+      Faltam {{ minutes }}:{{ seconds < 10 ? "0" + seconds : seconds }} para
+      expirar!
     </div>
-    <div class="bg-button rounded-xl px-4 py-2 mt-3">
-      <button
-        class="return-button bg-button text-white font-bold"
-        @click="returnToMarketplace"
-      >
+    <div
+      class="bg-button rounded-xl px-4 py-2 mt-3 cursor-pointer"
+      @click="returnToMarketplace"
+    >
+      <button class="return-button bg-button text-white font-bold">
         Voltar ao marketplace
       </button>
     </div>
