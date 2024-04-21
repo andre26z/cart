@@ -1,47 +1,55 @@
 <template>
-  <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-    <div class="p-4 bg-white rounded-lg shadow-md mt-4">
-      <h3 class="font-semibold text-gray-800">Produtos:</h3>
-      <p class="text-xl font-bold text-gray-900">R${{ total.toFixed(2) }}</p>
-    </div>
-    <div v-if="total > 0" class="p-4 bg-white rounded-lg shadow-md">
-      <h3 class="font-semibold text-gray-800">Total com frete:</h3>
-      <p class="text-xl font-bold text-gray-900">
-        R${{ (total + 100).toFixed(2) }}
-      </p>
-    </div>
-    <div class="flex-container">
-      <div class="product-list flex-1">
-        <ProductCard
-          v-for="product in products"
-          :key="product.id"
-          :item="product.item"
-          :description="product.description"
-          :value="product.value"
-          @update-total="handleUpdateTotal"
-        />
+  <div class="container mx-auto h-screen items-center w-2/3">
+    <div class="products-section">
+      <!-- Conteúdo da seção de produtos aqui -->
+      <div class="p-4 bg-white rounded-lg shadow-md">
+        <h3 class="font-semibold text-gray-800">Produtos:</h3>
+        <p class="text-xl font-bold text-gray-900">R${{ total.toFixed(2) }}</p>
+      </div>
+      <div v-if="total > 0" class="p-4 bg-white rounded-lg shadow-md">
+        <h3 class="font-semibold text-gray-800">Total com frete:</h3>
+        <p class="text-xl font-bold text-gray-900">
+          R${{ (total + 100).toFixed(2) }}
+        </p>
+      </div>
+      <div class="flex-container">
+        <div class="product-list flex-1">
+          <ProductCard
+            v-for="product in products"
+            :key="product.id"
+            :item="product.item"
+            :description="product.description"
+            :value="product.value"
+            @update-total="handleUpdateTotal"
+          />
+        </div>
       </div>
     </div>
-    <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-      <Payment
-        v-if="!paymentMethodSelected"
-        @proceed-with-method="handleProceedWithMethod"
-      />
-      <Pix
-        v-else-if="paymentMethodSelected === 'PIX'"
-        @close-pix="handleClosePix"
-        @return-to-marketplace="handleReturnToMarketplace"
-      />
-      <CreditCardPayment
-        v-if="paymentMethodSelected === 'Cartao de Credito'"
-        @return-to-payment-method-selection="
-          handleReturnToPaymentMethodSelection
-        "
-      />
-      <Boleto
-        v-else-if="paymentMethodSelected === 'Boleto'"
-        @return-to-payment="handleReturnToPaymentMethodSelection"
-      />
+    <div class="payment-section">
+      <!-- Conteúdo da seção de pagamento aqui -->
+      <div
+        class="max-w-xl mx-auto bg-white rounded-lg shadow-md overflow-hidden"
+      >
+        <Payment
+          v-if="!paymentMethodSelected"
+          @proceed-with-method="handleProceedWithMethod"
+        />
+        <Pix
+          v-else-if="paymentMethodSelected === 'PIX'"
+          @close-pix="handleClosePix"
+          @return-to-marketplace="handleReturnToMarketplace"
+        />
+        <CreditCardPayment
+          v-if="paymentMethodSelected === 'Cartao de Credito'"
+          @return-to-payment-method-selection="
+            handleReturnToPaymentMethodSelection
+          "
+        />
+        <Boleto
+          v-else-if="paymentMethodSelected === 'Boleto'"
+          @return-to-payment="handleReturnToPaymentMethodSelection"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -82,6 +90,18 @@ const handleCloseBoleto = () => {
 </script>
 
 <style scoped>
+.container {
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-around;
+}
+
+.products-section,
+.payment-section {
+  flex: 1; /* Faz cada seção ocupar metade do espaço disponível */
+  margin: 10px; /* Espaçamento entre as seções */
+}
+
 .flex-container {
   display: flex;
   justify-content: space-between;
@@ -92,5 +112,5 @@ const handleCloseBoleto = () => {
   flex-basis: 50%;
 }
 
-/* Add any additional styling as needed */
+/* Mantenha qualquer estilo adicional necessário */
 </style>

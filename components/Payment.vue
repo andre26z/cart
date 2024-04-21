@@ -44,7 +44,6 @@ const emitProceed = () => {
   if (selectedMethod.value) {
     emits("proceed-with-method", selectedMethod.value);
   } else {
-    // Handle the case where no method is selected
     console.error("Please select a payment method before proceeding.");
   }
 };
@@ -74,5 +73,5 @@ const emitProceed = () => {
   margin-top: 1rem;
 }
 
-/* Additional styling to match your screenshot may be needed */
+
 </style>
