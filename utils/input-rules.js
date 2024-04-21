@@ -4,7 +4,7 @@ export const inputRules = {
   fullName: {
     validate: (value) => /^[a-zA-Z]+\s[a-zA-Z]+(?:\s[a-zA-Z]+)*$/.test(value),
     message:
-      "Nome completo deve conter apenas letras e ter pelo menos dois nomes.",
+      "Nome completo deve conter apenas letras e ter pelo menos um sobrenome.",
   },
   cardNumber: {
     validate: (value) => /^\d{13,16}$/.test(value),

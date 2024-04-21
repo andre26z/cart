@@ -100,7 +100,11 @@ const handleUpdateTotal = ({ value, selected }) => {
 };
 
 const handleProceedWithMethod = (method) => {
-  paymentMethodSelected.value = method;
+  if (total.value > 0) {
+    paymentMethodSelected.value = method;
+  } else {
+    alert("Seu carrinho está vazio!");
+  }
 };
 
 const handleReturnToMarketplace = () => {
