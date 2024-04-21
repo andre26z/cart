@@ -1,15 +1,50 @@
 [
-    {
-      "id": 1,
-      "item": "Camisa do Flamengo",
-      "description": "Camisa oficial Clube de Regatas do Flamengo.",
-      "value": 250
-    },
-    {
-      "id": 2,
-      "item": "Jaqueta Calvin Klein",
-      "description": "Jaqueta preta Calvin Klein original tecido grosso.",
-      "value": 500
-    }
-  ]
-  
+  {
+    "id": 1,
+    "item": "Camisa do Flamengo",
+    "description": "Camisa oficial Clube de Regatas do Flamengo.",
+    "value": 250
+  },
+  {
+    "id": 2,
+    "item": "Jaqueta Calvin Klein",
+    "description": "Jaqueta preta Calvin Klein original tecido grosso.",
+    "value": 500
+  },
+  {
+    "id": 3,
+    "item": "Jaqueta Hugo Boss",
+    "description": "Jaqueta preta Hugo Boss original tecido grosso.",
+    "value": 1200
+  },
+  {
+    "id": 4,
+    "item": "Tênis Nike Air Max",
+    "description": "Tênis esportivo com tecnologia Air Max para maior conforto durante a corrida.",
+    "value": 650
+  },
+  {
+    "id": 5,
+    "item": "Óculos de Sol Ray-Ban",
+    "description": "Óculos de sol estilo aviador, lentes com proteção UV.",
+    "value": 450
+  },
+  {
+    "id": 6,
+    "item": "Relógio Smartwatch Apple",
+    "description": "Apple Watch Series 6, com monitoramento de saúde e fitness.",
+    "value": 2900
+  },
+  {
+    "id": 7,
+    "item": "Mochila Samsonite",
+    "description": "Mochila para notebook resistente à água, ideal para viagens e trabalho.",
+    "value": 780
+  },
+  {
+    "id": 8,
+    "item": "Perfume Chanel No. 5",
+    "description": "Perfume icônico com notas florais, ideal para todas as ocasiões.",
+    "value": 890
+  }
+]

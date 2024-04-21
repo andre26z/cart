@@ -1,7 +1,6 @@
 <template>
   <div class="container mx-auto h-screen items-center w-2/3">
     <div class="products-section">
-      <!-- Conteúdo da seção de produtos aqui -->
       <div class="p-4 bg-white rounded-lg shadow-md">
         <h3 class="font-semibold text-gray-800">Produtos:</h3>
         <p class="text-xl font-bold text-gray-900">R${{ total.toFixed(2) }}</p>
@@ -13,7 +12,7 @@
         </p>
       </div>
       <div class="flex-container">
-        <div class="product-list flex-1">
+        <div class="product-list">
           <ProductCard
             v-for="product in products"
             :key="product.id"
@@ -26,10 +25,7 @@
       </div>
     </div>
     <div class="payment-section">
-      <!-- Conteúdo da seção de pagamento aqui -->
-      <div
-        class="max-w-xl mx-auto bg-white rounded-lg shadow-md overflow-hidden"
-      >
+      <div class="max-w-xl mx-auto bg-white rounded-lg overflow-hidden">
         <Payment
           v-if="!paymentMethodSelected"
           @proceed-with-method="handleProceedWithMethod"
@@ -61,7 +57,7 @@ import productData from "@/products.json";
 import Pix from "@/components/Pix.vue";
 const products = ref(productData);
 const total = ref(0);
-const showPix = ref(false);
+
 const paymentMethodSelected = ref(null);
 
 const handleUpdateTotal = ({ value, selected }) => {
@@ -84,15 +80,13 @@ const handleReturnToMarketplace = () => {
 const handleReturnToPaymentMethodSelection = () => {
   paymentMethodSelected.value = null;
 };
-const handleCloseBoleto = () => {
-  paymentMethodSelected.value = null;
-};
+
 </script>
 
 <style scoped>
 .container {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   justify-content: space-around;
 }
 
@@ -107,9 +101,10 @@ const handleCloseBoleto = () => {
   justify-content: space-between;
 }
 
-.product-list,
-.payment-method {
-  flex-basis: 50%;
+.product-list {
+  flex-basis: 100%; /* Use the full width of its parent */
+  max-height: 175px; /* Maximum height before scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 /* Mantenha qualquer estilo adicional necessário */

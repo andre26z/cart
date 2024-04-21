@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex justify-between p-4 rounded-lg shadow-md mb-2 border-l-4 cursor-pointer"
+    class="flex justify-between p-4 rounded-lg shadow-md mb-2 border-l-4 cursor-pointer "
     :class="{
       'bg-white border-red-500': !isSelected,
       'bg-gray-300 border-gray-500': isSelected,

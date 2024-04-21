@@ -1,17 +1,29 @@
 <template>
   <div
-    class="pix-container text-center p-4 bg-white rounded-lg shadow-md max-w-sm mx-auto"
+    class="pix-container text-center p-4 bg-white rounded-lg shadow-md max-w-sm mx-auto overflow-y-auto"
   >
     <h3 class="text-lg font-bold mb-2">Obrigado por comprar com a gente!</h3>
     <p>Olá, João Vitor. Obrigado por comprar!</p>
     <p>O QR CODE abaixo te dá 5% de desconto no site!</p>
-    <div class="timer mb-2">
-      {{ minutes }}:{{ seconds < 10 ? "0" + seconds : seconds }}
+
+    <figure>
+      <img
+        src="@/assets/qr-code.png"
+        alt="QR Code"
+        class="qr-code mb-4 w-40 justify-center mx-auto mt-3"
+      />
+    </figure>
+    <div class="timer mb-2 text-lg text-green-600 mb-2">
+    Faltam {{ minutes }}:{{ seconds < 10 ? "0" + seconds : seconds }} para expirar!
     </div>
-    <img src="@/assets/qr-code.png" alt="QR Code" class="qr-code mb-4" />
-    <button class="return-button" @click="returnToMarketplace">
-      Voltar ao marketplace
-    </button>
+    <div class="bg-button rounded-xl px-4 py-2 mt-3">
+      <button
+        class="return-button bg-button text-white font-bold"
+        @click="returnToMarketplace"
+      >
+        Voltar ao marketplace
+      </button>
+    </div>
   </div>
 </template>
 
@@ -50,4 +62,3 @@ const returnToMarketplace = () => {
   emits("return-to-marketplace");
 };
 </script>
-
