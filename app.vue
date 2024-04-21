@@ -38,6 +38,10 @@
           handleReturnToPaymentMethodSelection
         "
       />
+      <Boleto
+        v-else-if="paymentMethodSelected === 'Boleto'"
+        @return-to-payment="handleReturnToPaymentMethodSelection"
+      />
     </div>
   </div>
 </template>
@@ -60,9 +64,7 @@ const handleUpdateTotal = ({ value, selected }) => {
   }
 };
 const handlePaymentSelected = (method) => {
-  if (method === "PIX") {
-    showPix.value = true;
-  }
+  paymentMethodSelected.value = method;
 };
 const handleProceedWithMethod = (method) => {
   paymentMethodSelected.value = method;
@@ -72,6 +74,9 @@ const handleReturnToMarketplace = () => {
   paymentMethodSelected.value = null;
 };
 const handleReturnToPaymentMethodSelection = () => {
+  paymentMethodSelected.value = null;
+};
+const handleCloseBoleto = () => {
   paymentMethodSelected.value = null;
 };
 </script>
