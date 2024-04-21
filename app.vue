@@ -23,12 +23,21 @@
       </div>
     </div>
     <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-      <!-- ... other components ... -->
       <Payment
         v-if="!paymentMethodSelected"
         @proceed-with-method="handleProceedWithMethod"
       />
-      <Pix v-if="paymentMethodSelected === 'PIX'" @close-pix="handleClosePix" @return-to-marketplace="handleReturnToMarketplace" />
+      <Pix
+        v-else-if="paymentMethodSelected === 'PIX'"
+        @close-pix="handleClosePix"
+        @return-to-marketplace="handleReturnToMarketplace"
+      />
+      <CreditCardPayment
+        v-if="paymentMethodSelected === 'Cartao de Credito'"
+        @return-to-payment-method-selection="
+          handleReturnToPaymentMethodSelection
+        "
+      />
     </div>
   </div>
 </template>
@@ -60,7 +69,10 @@ const handleProceedWithMethod = (method) => {
 };
 
 const handleReturnToMarketplace = () => {
-  paymentMethodSelected.value = null; // This will hide Pix and show Payment if no method is selected
+  paymentMethodSelected.value = null;
+};
+const handleReturnToPaymentMethodSelection = () => {
+  paymentMethodSelected.value = null;
 };
 </script>
 
