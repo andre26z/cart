@@ -1,53 +1,46 @@
 <template>
-  <div class="credit-card-payment-container">
-    <h3 class="text-lg font-bold mb-2">Preencha os dados de pagamento</h3>
+  <div class="">
+    <h3 class="text-lg font-bold mb-5">Preencha os dados de pagamento</h3>
     <form v-if="!paymentSuccess" @submit.prevent="submitCreditCardForm">
       <div class="input-group mb-3">
-        <input
-          type="text"
-          placeholder="Nome completo"
-          v-model="creditCard.fullName"
-          required
-        />
+        <label for="fullName" class="font-bold">Nome completo</label>
+        <input type="text" v-model="creditCard.fullName" required />
       </div>
       <div class="input-group mb-3">
-        <input
-          type="text"
-          placeholder="Números do cartão"
-          v-model="creditCard.cardNumber"
-          required
-        />
+        <label for="cardNumber" class="font-bold">Número do cartão</label>
+        <input type="text" v-model="creditCard.cardNumber" required />
       </div>
       <div class="input-group mb-3">
-        <input
-          type="text"
-          placeholder="CPF do responsável pelo cartão"
-          v-model="creditCard.cpf"
-          required
-        />
+        <label for="cpf" class="font-bold"
+          >CPF do responsável pelo cartão</label
+        >
+        <input type="text" v-model="creditCard.cpf" required />
       </div>
-      <div class="input-group mb-3">
-        <input
-          type="text"
-          placeholder="Validade"
-          v-model="creditCard.expirationDate"
-          required
-        />
+      <div class="flex flex-wrap -mx-2">
+        <div class="input-group mb-3 px-2 w-40">
+          <label for="expirationDate" class="font-bold">Validade</label>
+          <input type="text" placeholder="MM/AA" v-model="creditCard.expirationDate" required />
+        </div>
+        <div class="input-group mb-3 px-2 w-24">
+          <label for="cvv" class="font-bold ">CVV</label>
+          <input type="text" placeholder="XXX" required />
+        </div>
       </div>
-      <div class="input-group mb-3">
-        <input
-          type="text"
-          placeholder="CVV"
-          v-model="creditCard.cvv"
-          required
-        />
+      <div
+        class="bg-button rounded-xl px-4 py-2 flex items-center justify-center cursor-pointer w-full mx-auto mt-4"
+      >
+        <button
+          type="submit"
+          class="return-button bg-button text-white font-bold"
+        >
+          Realizar pagamento
+        </button>
       </div>
-      <button type="submit" class="submit-button">Realizar pagamento</button>
     </form>
     <div v-if="paymentSuccess" class="payment-success-message">
       <p>Pagamento aprovado</p>
     </div>
-    <div class="text-center justify-center mt-2">
+    <div class="text-center justify-center mt-5">
       <button @click="returnToPayment" class="return-button">Voltar</button>
     </div>
   </div>
@@ -66,11 +59,8 @@ const creditCard = reactive({
 });
 
 const submitCreditCardForm = () => {
-  // Placeholder for form submission logic
   console.log("Submitting credit card form:", creditCard);
 
-  // Here you should implement the actual form submission to your backend
-  // After successful submission, set paymentSuccess to true to show the confirmation message
   paymentSuccess.value = true;
 };
 const returnToPayment = () => {
@@ -79,7 +69,6 @@ const returnToPayment = () => {
 </script>
 
 <style scoped>
-/* You can place your CSS here. This is just an example */
 .credit-card-payment-container {
   padding: 1rem;
   border: 1px solid #ccc;
@@ -95,8 +84,13 @@ const returnToPayment = () => {
 .input-group input {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
   border-radius: 4px;
+  transition: border 0.3s ease;
+}
+
+.input-group input:hover {
+  border: 1px solid #202122;
 }
 
 .submit-button {
