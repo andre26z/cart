@@ -29,17 +29,24 @@
       <div class="grid grid-cols-1 divide-y vertical-divider px-3">
         <div class="bg-button rounded-full text-white px-2 py-1 ml-1">1</div>
         <div
-          class="rounded-full px-2 py-1 ml-1 mt-3"
           :class="{
-            'bg-button rounded-full text-white px-2 py-1 ml-1 mt-3':
+            'rounded-full px-2 py-1 ml-1 mt-3 text-white': true,
+            'bg-button':
               paymentMethodSelected === 'PIX' ||
               paymentMethodSelected === 'Cartao de Credito' ||
               paymentMethodSelected === 'Boleto',
+            'bg-gray-400': !(
+              paymentMethodSelected === 'PIX' ||
+              paymentMethodSelected === 'Cartao de Credito' ||
+              paymentMethodSelected === 'Boleto'
+            ),
           }"
         >
           2
         </div>
-        <div class="py-1 ml-1 px-2 mt-3">3</div>
+        <div class="rounded-full px-2 py-1 ml-1 mt-3 bg-gray-400 text-white">
+          3
+        </div>
       </div>
     </div>
     <div class="payment-section">
