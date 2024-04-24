@@ -42,8 +42,9 @@
       </div>
       <div
         class="text-center justify-center mt-5 text-center w-1/4 mx-auto text-white bg-button cursor-pointer rounded-xl px-4 py-2 mt-7"
+        @click="returnToPayment"
       >
-        <button @click="returnToPayment" class="return-button">Voltar</button>
+        <button  class="return-button">Voltar</button>
       </div>
     </div>
   </div>
